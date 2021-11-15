@@ -3,6 +3,16 @@ version: "3.8"
 services:
   node:
     build: .
+    ports:
+      # REST Interface
+      - "8080:8080"
+      # P2P network
+      - "8333:8333"
+      # RPC interface
+      - "8332:8332"
+      # ZMQ
+      - "28332:28332"
+      - "28333:28333"
     command:
       - "-datadir=/data"
     volumes:
