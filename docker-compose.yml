@@ -9,10 +9,6 @@ services:
     volumes:
       - "bitcoin_data:/data"
 
-  app:
-    build:
-      context: ./app
-
 volumes:
   bitcoin_data:
     driver: local
