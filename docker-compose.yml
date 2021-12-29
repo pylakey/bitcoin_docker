@@ -3,18 +3,20 @@ version: "3.8"
 services:
   node:
     build:
-      context: .
-    ports:
-      # REST Interface
-      - "8080:8080"
-      # P2P network
-      - "8333:8333"
-      # RPC interface
-      - "8332:8332"
-      # ZMQ
-      - "28332:28332"
-      - "28333:28333"
+      context: ./node
     command:
       - "-datadir=/data"
     volumes:
-      - "./data:/data"
+      - "bitcoin_data:/data"
+
+  app:
+    build:
+      context: ./app
+
+volumes:
+  bitcoin_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '${PWD}/data'
